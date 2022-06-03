@@ -1,21 +1,26 @@
 const { ApolloServer, gql } = require('apollo-server');
+const mongoose = require('mongoose');
+
+const { DB_URL } = require('./config.js');
 const { authors, books } = require('./data.js');
+const Book = require('./models/Book.js');
 
 const typeDefs = gql`
-  type BookType {
+  type Book {
     id: ID!
-    name: String!
-    authorId: Int!
+    title: String!
+    createdAt: String!
+    authorId: ID
     # author: AuthorType
   }
   type AuthorType {
     id: ID!
     name: String!
-    # books: BookType
+    # books: [Book]
   }
   type Query {
-    books: [BookType]
-    book(id: ID!): BookType
+    getBooks: [Book]
+    book(id: ID!): Book
     authors: [AuthorType]
     author(id: ID!): AuthorType
   }
@@ -23,11 +28,19 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    books: () => {
-      return  books ;
+    getBooks: async () => {
+      try {
+        return await Book.find();
+      } catch (error) {
+        throw new Error(err);
+      }
     },
-    book: (_,args) => {
-      return books.find((book) => +book.id === +args.id)
+    book: async (_, args) => {
+      try {
+        return await Book.findById(args.id);
+      } catch (error) {
+        throw new Error(err);
+      }
     },
     authors: () => {
       return authors;
@@ -43,6 +56,10 @@ const server = new ApolloServer({
   resolvers,
 });
 
-server
-  .listen({ port: 5000 })
+mongoose
+  .connect(DB_URL, { useNewUrlParser: true })
+  .then(() => {
+    console.log('database connected');
+    return server.listen({ port: 5000 });
+  })
   .then(({ url }) => console.log('server started at ' + url));
