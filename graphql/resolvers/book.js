@@ -6,14 +6,14 @@ module.exports = {
             try {
               return await BookModel.find();
             } catch (error) {
-              throw new Error(error);
+              throw new Error(error.message);
             }
           },
           getBook: async (_, args) => {
             try {
               return await BookModel.findById(args.id);
             } catch (error) {
-              throw new Error(error);
+              throw new Error(error.message);
             }
           },
     }

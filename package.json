@@ -11,10 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.8.1",
+    "bcrypt": "^5.0.1",
     "graphql": "^16.5.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5"
   },
   "devDependencies": {
+    "crypto": "^1.0.1",
     "nodemon": "^2.0.16"
   }
 }
