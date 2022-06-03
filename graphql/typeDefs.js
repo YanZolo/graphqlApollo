@@ -14,10 +14,26 @@ module.exports = gql`
     createdAt: String!
     # books: [Book]
   }
+  type User {
+      id: ID!
+      username: String!
+      email: String! 
+      token: String!
+      createdAt: String!     
+  }
+  input RegisterInput {
+      username: String!
+      password: String!
+      confirmPassword: String!
+      email:String!
+  }
   type Query {
     getBooks: [Book]
     getBook(id: ID!): Book
     getAuthors: [Author]
     getAuthor(id: ID!): Author
+  }
+  type Mutation {
+      register(registerInput: RegisterInput): User!
   }
 `;

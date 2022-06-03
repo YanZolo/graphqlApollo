@@ -21,4 +21,27 @@ const books = [
   { title: "Rethinking Productivity in Software Engineering" },
 ];
 
-module.exports = { authors, books };
+const users = [
+  {
+    username: "Bret",
+    email: "Sincere@april.biz",
+  },
+  {
+    username: "Antonette",
+    email: "Shanna@melissa.tv",
+  },
+  {
+    username: "Samantha",
+    email: "Nathan@yesenia.net",
+  },
+  {
+    username: "Karianne",
+    email: "Julianne.OConner@kory.org",
+  },
+  {
+    username: "Kamren",
+    email: "Lucio_Hettinger@annie.ca",
+  },
+];
+
+module.exports = { authors, books, users };
