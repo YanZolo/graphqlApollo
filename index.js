@@ -10,7 +10,7 @@ const typeDefs = gql`
     id: ID!
     title: String!
     createdAt: String!
-    authorId: ID
+    authorId: Int!
     # author: AuthorType
   }
   type AuthorType {
@@ -55,6 +55,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
+
 
 mongoose
   .connect(DB_URL, { useNewUrlParser: true })
