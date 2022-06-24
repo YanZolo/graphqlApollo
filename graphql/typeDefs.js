@@ -4,8 +4,9 @@ module.exports = gql`
   type Book {
     id: ID!
     title: String!
-    # comments: [Post]
-    # likes: [Likes]
+    description:String!
+    comments: [Comment]!
+    likes: [Likes]!
     createdAt: String!
     author: String!
   }
@@ -16,6 +17,11 @@ module.exports = gql`
     createdAt: String!
     user: ID!
   }
+  type Comment {    
+    body: String!
+    username: String!
+    createdAt: String!
+  }
   type Likes {
     username: String!
     createdAt: String!
@@ -24,7 +30,7 @@ module.exports = gql`
     id: ID!
     name: String!
     createdAt: String!
-    # books: [Book]
+    books: [ID!]
   }
   type User {
     id: ID!
@@ -39,12 +45,12 @@ module.exports = gql`
     confirmPassword: String!
     email: String!
   }
-
+ 
   type Query {
     getBooks: [Book]
-    getBook(id: ID!): Book
+    getBook(bookId: ID!): Book
     getAuthors: [Author]
-    getAuthor(id: ID!): Author
+    getAuthor(authorId: ID!): Author
     getPosts: [Post]
     getPost(postId: ID!): Post
   }
@@ -52,5 +58,7 @@ module.exports = gql`
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
     createPost(body: String!): Post!
+    updatePost(postId: String!, body: String!): Post!
+    deletePost(postId: ID!): String!
   }
 `;

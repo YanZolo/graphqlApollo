@@ -2,10 +2,8 @@ const mongoose = require('mongoose');
 
 const bookSchema = new mongoose.Schema({
   title: String,
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'authors',
-  },
+  author: String,
+  description: String,
   createdAt: String,
   comments: [
     {

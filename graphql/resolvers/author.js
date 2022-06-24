@@ -11,7 +11,7 @@ module.exports = {
     },
     getAuthor: async (_, args) => {
       try {
-        return await AuthorModel.findById(args.id);
+        return await AuthorModel.findById(args.authorId);
       } catch (error) {
         throw new Error(error.message);
       }

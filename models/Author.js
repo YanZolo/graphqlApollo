@@ -2,10 +2,26 @@ const mongoose = require('mongoose');
 
 const authorSchema = mongoose.Schema({
   name: String,
-  book: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'books',
-  },
+  books: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'books',
+      required: true,
+    },
+  ],
+  comments: [
+    {
+      body: String,
+      username: String,
+      createdAt: String,
+    },
+  ],
+  likes: [
+    {
+      username: String,
+      createdAt: String,
+    },
+  ],
   createdAt: String,
 });
 
