@@ -16,5 +16,10 @@ module.exports = {
               throw new Error(error.message);
             }
           },
+    },
+    Mutation: {
+      bookComment: async (BookModel, {body, username}) => {
+        
+      }
     }
 }

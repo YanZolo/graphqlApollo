@@ -3,7 +3,8 @@ const { DB_URL } = require("./config");
 const BookModel = require("./models/Book");
 const AuthorModel = require("./models/Author");
 const UserModel = require("./models/User")
-const { authors, books, users } = require("./data");
+const PostModel = require("./models/Post")
+const { authors, books, users, posts } = require("./data");
 const hash = require("./utils/bcrypt/hashPassword")
 
 const start = async () => {
@@ -25,6 +26,12 @@ const start = async () => {
           user.createdAt = new Date().toISOString()
           user.password = await hash(user.username)
         await UserModel.create(user);
+      });
+    }
+    if ((await PostModel.countDocuments()) < 1) {
+      posts.map(async (post) => {
+          post.createdAt = new Date().toISOString()
+        await PostModel.create(post);
       });
     }
     console.log("database connected");
