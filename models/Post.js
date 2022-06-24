@@ -20,11 +20,7 @@ const postSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
-  },
-  // book:{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'books',
-  // }
+  }, 
 });
 
 module.exports = mongoose.model('posts', postSchema);
