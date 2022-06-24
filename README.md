@@ -1,2 +1,2 @@
 # Library with forum
-# stack : nodeJs, graphql, apollo-server, mongoDB, react 
+# stack : NodeJs, Graphql, Apollo-server, MongoDB, React  // work in progress...
